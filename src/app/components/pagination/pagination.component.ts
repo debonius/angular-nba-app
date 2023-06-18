@@ -27,6 +27,7 @@ export class PaginationComponent {
     console.log('this.page', this.page);
     // this.passQuery(this.playerName);
     // this.setPage();
+    this.setNewPage(this.page);
   }
   
   setNewPage(value: number) {

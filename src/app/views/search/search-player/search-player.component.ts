@@ -29,7 +29,7 @@ import { ApiService } from 'src/app/API/api.service';
       <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
 
       <!-- add condition *ngIf="results !== null && results.length > 0" -->
-      <app-pagination [page]="page" (changePageEvent)="changePage()"></app-pagination>
+      <app-pagination [page]="page" (changePageEvent)="changePage($event)"></app-pagination>
 
       <mat-card 
         class="mat-card mat-focus-indicator card--rounded search-results"
@@ -131,7 +131,9 @@ export class SearchPlayerComponent implements OnInit {
     this.results = null;
   }
 
-  changePage() {
+  changePage(page: number) {
+    console.log('called changePage()')
+    console.log('page', page)
     this.passQuery(this.playerName);
   }
 
