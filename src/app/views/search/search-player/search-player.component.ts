@@ -28,15 +28,8 @@ import { ApiService } from 'src/app/API/api.service';
       
       <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
 
-      <div class="pagination" *ngIf="results !== null && results.length > 0">
-        <mat-icon aria-hidden="false" aria-label="Previous page" fontIcon="navigate_before"
-          *ngIf="page > 1"
-          (click)="goToPrevPage()"
-        ></mat-icon>
-          <span>{{ page }}</span>
-        <mat-icon aria-hidden="false" aria-label="Next page" fontIcon="navigate_next"
-          (click)="goToNextPage()"></mat-icon>
-      </div>
+      <!-- add condition *ngIf="results !== null && results.length > 0" -->
+      <app-pagination [page]="page" (setPageEvent)="changePage()"></app-pagination>
 
       <mat-card 
         class="mat-card mat-focus-indicator card--rounded search-results"
@@ -72,20 +65,6 @@ export class SearchPlayerComponent implements OnInit {
   
   constructor(private _api: ApiService) {}
   ngOnInit() {}
-
-  goToPrevPage() {
-    console.log('called goToPrevPage()');
-    this.page -= 1;
-    console.log('this.page', this.page);
-    this.passQuery (this.playerName);
-  }
-
-  goToNextPage() {
-    console.log('called goToNextPage()');
-    this.page += 1;
-    console.log('this.page', this.page);
-    this.passQuery (this.playerName);
-  }
 
   passQuery (name: string) {
     if (this.playerName !== '' || this.teamName !== '') {
@@ -152,5 +131,11 @@ export class SearchPlayerComponent implements OnInit {
     this.results = null;
   }
 
+  changePage() {
+    this.passQuery(this.playerName);
+  }
+
 }
+
+
 

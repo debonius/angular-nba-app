@@ -86,10 +86,9 @@ export class ApiService {
     })
   }
 
-  getPlayers(name: string, perPage: number = 100, getPage: number = 1) {
+  getPlayers(name: string, perPage: number = 100, page: number = 1) {
     let query: string | undefined;
     let limit: string = perPage ? 'per_page=' + perPage : 'per_page=' + 100;
-    let page: number = getPage;
     query = limit + '&search=' + name;
     return this.httpClient.get<PlayersResponse>(`https://free-nba.p.rapidapi.com/players?page=${page}&${query}`, {
       headers: {
