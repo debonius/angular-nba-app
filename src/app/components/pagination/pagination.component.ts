@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -15,13 +15,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   `,
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent {
   @Input() page!: number;
-  @Output() setPageEvent = new EventEmitter<number>();
-  constructor() { }
+  @Output() changePageEvent = new EventEmitter<number>();
 
-  ngOnInit(): void {
-  }
+  constructor() { }
 
   onChangePage(addend: number) {
     console.log('called onChangePage()');
@@ -31,8 +29,8 @@ export class PaginationComponent implements OnInit {
     // this.setPage();
   }
   
-  changePageEvent() {
-    this.setPageEvent.emit();
+  setNewPage(value: number) {
+    this.changePageEvent.emit(value);
   }
   
 

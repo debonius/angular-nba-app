@@ -29,7 +29,7 @@ import { ApiService } from 'src/app/API/api.service';
       <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
 
       <!-- add condition *ngIf="results !== null && results.length > 0" -->
-      <app-pagination [page]="page" (setPageEvent)="changePage()"></app-pagination>
+      <app-pagination [page]="page" (changePageEvent)="changePage()"></app-pagination>
 
       <mat-card 
         class="mat-card mat-focus-indicator card--rounded search-results"
